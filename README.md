@@ -8,7 +8,7 @@
 [![Standard: High--Integrity](https://img.shields.io/badge/standard-high--integrity-000000.svg?style=flat-square)](https://github.com/AsaqeLee/peer-consult)
 [![Config: Modular](https://img.shields.io/badge/config-modular-000000.svg?style=flat-square)](https://github.com/AsaqeLee/peer-consult)
 
-English | [简体中文](./docs/README_ZH.md)
+English | [简体中文](./README_ZH.md)
 
 </div>
 
