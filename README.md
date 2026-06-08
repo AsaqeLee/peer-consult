@@ -1,63 +1,123 @@
-# peer-consult
+<div align="center">
 
-> **Deterministic Multi-Agent Consultation Framework**  
-> Decentralized, blind AI peer reviews for high-stakes engineering.
+# Peer-Consult
 
----
+**Deterministic Multi-Agent Consultation Framework for High-Integrity Engineering**
 
-`peer-consult` is a meta-engineering protocol designed to eliminate AI hallucination and architectural bottlenecks. By orchestrating independent AI systems in a "blind" feedback loop, it ensures diverse technical perspectives and surfaces hidden edge cases before final decision-making.
+[![Architecture: Deterministic](https://img.shields.io/badge/architecture-deterministic-000000.svg?style=flat-square)](https://github.com/AsaqeLee/peer-consult)
+[![Standard: High--Integrity](https://img.shields.io/badge/standard-high--integrity-000000.svg?style=flat-square)](https://github.com/AsaqeLee/peer-consult)
+[![Config: Modular](https://img.shields.io/badge/config-modular-000000.svg?style=flat-square)](https://github.com/AsaqeLee/peer-consult)
 
-## Core Philosophy
+English | [简体中文](./docs/README_ZH.md)
 
-### Multi-Agent Blind Review
-Standard AI workflows are linear and prone to bias. `peer-consult` enforces parallel, isolated consultation, preventing agents from influencing each other's intermediate logic to maximize the integrity of technical solutions.
-
-### Self-Healing Determinism
-Utilizing structured input/output schemas, the framework bridges the gap between the creative uncertainty of LLMs and the rigid requirements of production software engineering.
-
-### Context Isolation
-A security-first approach that maintains strict file-system boundaries. The engine only operates within defined context windows to prevent data leakage and ensure privacy.
+</div>
 
 ---
 
-## The Workflow
+## Introduction
+
+**Peer-Consult** is a meta-engineering protocol designed to eliminate AI hallucination and architectural bottlenecks in high-stakes development. By orchestrating independent AI systems (Claude, Gemini) in a "blind" feedback loop, it ensures diverse technical perspectives and surfaces hidden edge cases before final decision-making.
+
+>[!IMPORTANT]
+>This framework is designed for senior engineers and autonomous agents who require deterministic, verified outputs rather than creative guesses.
+
+---
+
+## Workflow Architecture
+
+The core orchestration engine enforces strict isolation between participating agents to maximize the integrity of the synthesis.
 
 ```mermaid
 graph TD
-    Input[Question + Context] --> Engine{Orchestration}
-    Engine --> Agent1[Agent A: Claude]
-    Engine --> Agent2[Agent B: Gemini]
-    Agent1 -- Blind Output --> Synthesis[Synthesis Engine]
-    Agent2 -- Blind Output --> Synthesis
-    Synthesis --> Report[Structured Markdown Report]
-    Report --> Audit[Human/Agent Decision]
+    subgraph Isolation_Layer [Isolation Layer]
+        A1[Agent A: Claude]
+        A2[Agent B: Gemini]
+    end
+    
+    Input([Input: Question + Context]) --> Engine{Orchestrator}
+    Engine --> A1
+    Engine --> A2
+    
+    A1 -- Blind Result --> Synthesis[Synthesis Engine]
+    A2 -- Blind Result --> Synthesis
+    
+    Synthesis --> Output[Structured Report]
+    Output --> Decision[/Human-in-the-Loop Decision/]
+    
+    style Isolation_Layer fill:none,stroke:#000,stroke-width:2px,stroke-dasharray: 5 5
 ```
 
 ---
 
-## Getting Started
+## Core Specifications
+
+<details>
+<summary><b>DDD Folder Structure</b></summary>
+
+```text
+peer-consult/
+├── .codex/             # Skill definitions for autonomous environments
+│   └── skills/         # Modular capabilities
+├── scripts/            # Core orchestration & synthesis engine
+├── docs/               # Context isolation & boundary definitions
+│   └── peer_consult/   # Mandatory isolated context window
+├── reference/          # Design philosophy and research
+└── tests/              # Integrity verification suite
+```
+</details>
+
+<details>
+<summary><b>Conflict Resolution Protocol</b></summary>
+
+When agents provide divergent solutions, the Synthesis Engine applies the following hierarchy:
+1. **Security Baseline:** Any solution violating security boundaries is immediately flagged.
+2. **Deterministic Match:** Overlapping logic between independent agents is prioritized as the "High-Integrity Core."
+3. **Divergence Analysis:** Non-overlapping suggestions are categorized as "Alternative Perspectives" for human audit.
+</details>
+
+<details>
+<summary><b>Enterprise Installation & Usage</b></summary>
 
 ### Prerequisites
-- **Python 3.10+**
-- **LLM Access:** Configured [Claude Code](https://github.com/anthropics/claude-code) and [Gemini CLI](https://github.com/google/generative-ai-python).
+- Python 3.10 or higher
+- Environment variables: `ANTHROPIC_API_KEY`, `GOOGLE_API_KEY`
 
-### Installation
+### Setup
 ```bash
-# Clone with submodules
 git clone --recursive https://github.com/AsaqeLee/peer-consult.git
 cd peer-consult
+```
 
-# Execute consultation
+### Execution
+```bash
 python3 scripts/peer_consult.py \
   --question "Refactor Go service to use Repository pattern" \
   --context-file docs/peer_consult/request.md
 ```
+</details>
 
-## Structure
-- `scripts/`: Core orchestration engine.
-- `docs/`: Design philosophy and context isolation boundaries.
-- `.codex/`: Integrated Skill definitions for autonomous environments.
+<details>
+<summary><b>FAQ</b></summary>
+
+**Q: Why "blind" consultation?**
+A: Standard AI interactions are linear. By preventing agents from seeing each other's intermediate thoughts, we maximize the diversity of technical solutions and surface hidden edge cases.
+
+**Q: Is there any code-writing capability?**
+A: No. By design, Peer-Consult is "Insight Only." It collects intelligence without directly modifying code, maintaining a strict human-in-the-loop requirement for implementation.
+</details>
 
 ---
 
-&copy; 2026 AsaqeLee. Built for high-integrity engineering.
+## Strategic Boundaries
+
+- **Insight Only:** Collects intelligence without directly modifying code.
+- **Context Isolated:** Only reads from `docs/peer_consult/` to prevent context leakage.
+- **Deterministic:** Outputs are structured for immediate audit and ingestion.
+
+---
+
+<div align="center">
+
+&copy; 2026 AsaqeLee. Designed for the era of multi-agent engineering.
+
+</div>
