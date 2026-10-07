@@ -1,72 +1,55 @@
-<div align="center">
-
 # Peer-Consult
-
-**Multi-Agent Decision Synthesis Framework for High-Integrity Engineering**
-
-[![Architecture: Deterministic](https://img.shields.io/badge/architecture-deterministic-000000.svg?style=flat-square)](https://github.com/AsaqeLee/peer-consult)
-[![Standard: High--Integrity](https://img.shields.io/badge/standard-high--integrity-000000.svg?style=flat-square)](https://github.com/AsaqeLee/peer-consult)
-[![Tooling: Ruff](https://img.shields.io/badge/tooling-ruff-000000.svg?style=flat-square)](https://github.com/AsaqeLee/peer-consult)
 
 English | [简体中文](./README_ZH.md)
 
-</div>
+A multi-agent **peer consultation** skill and small Python toolkit for collecting independent coding or architecture advice from several AI systems before you commit to a decision.
 
----
+## Overview
 
-## Introduction
+Peer-Consult orchestrates isolated consultations so answers are gathered separately, then synthesized under explicit rules (agreement first, then verifiability / lower risk). It is a developer workflow aid—not an automated production decision engine.
 
-**Peer-Consult** is a meta-engineering protocol designed to eliminate architectural bottlenecks in high-stakes development. By orchestrating independent AI systems in a isolated feedback loop, it ensures diverse technical perspectives and surfaces hidden edge cases through deterministic synthesis.
+## Features / scope
 
----
+- Skill / CLI oriented consultation flow for coding and architecture questions
+- Independent agent responses with a deterministic synthesis preference order:
+  1. Overlapping recommendations across agents
+  2. Preference for options that are easier to verify (e.g., stronger test coverage)
+  3. Preference for options with fewer architectural side effects when agents diverge
+- Python package under `src/peer_consult/` with tests under `tests/`
+- Supporting references under `reference/` and `reference.md`
+- Tooling via `pyproject.toml` (Ruff) and `requirements.txt`
 
-## Core Specifications
+## Requirements
 
-<details>
-<summary><b>Refactored Architecture</b></summary>
+- Python 3.8+
+- Dependencies from `requirements.txt`
+- Downstream AI CLIs or skills as documented in `README_ZH.md` / `reference.md` (Codex, Claude Code, etc.)
+
+## Getting started
+
+```bash
+git clone https://github.com/AsaqeLee/peer-consult.git
+cd peer-consult
+pip install -r requirements.txt
+pytest tests/
+```
+
+Inspect `bin/`, `src/peer_consult/`, and `reference.md` for skill installation and consultation commands specific to your agent host.
+
+## Project layout
 
 ```text
 peer-consult/
-├── pyproject.toml      # Modern project metadata & Ruff config
-├── requirements.txt    # Frozen dependency manifest
-├── scripts/            # Core orchestration & synthesis engine
-├── tests/              # Unit tests for consensus & decision logic
-│   └── test_engine.py  # Validation of multi-agent arbitration
-└── docs/               # Context isolation definitions
+├── pyproject.toml
+├── requirements.txt
+├── bin/
+├── src/peer_consult/
+├── tests/
+├── reference.md
+├── reference/
+└── README_ZH.md
 ```
-</details>
 
-<details>
-<summary><b>Synthesis Logic</b></summary>
+## Status / limitations
 
-The engine applies a strict hierarchy for conflict resolution:
-1. **Deterministic Match:** Overlapping logic between independent agents is prioritized.
-2. **Verifiability Bias:** If agents diverge, the solution with higher test coverage is selected.
-3. **Risk Minimization:** Fallback to the option with the fewest architectural side effects.
-</details>
-
-<details>
-<summary><b>Development & Tooling</b></summary>
-
-### Standards
-- **Python:** 3.8+ compliant.
-- **Linting:** Ruff (Line length: 120).
-- **Testing:** Pytest for core arbitration logic.
-
-### Commands
-```bash
-# Install dependencies
-pip install -r requirements.txt
-
-# Execute validation suite
-pytest tests/
-```
-</details>
-
----
-
-<div align="center">
-
-&copy; 2026 AsaqeLee. Designed for deterministic engineering.
-
-</div>
+Research / personal tooling. Synthesis heuristics are simple and transparent; they do not replace human judgment. Earlier “high-integrity / military” marketing language is intentionally avoided here.
