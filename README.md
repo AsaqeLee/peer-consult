@@ -53,3 +53,7 @@ peer-consult/
 ## Status / limitations
 
 Research / personal tooling. Synthesis heuristics are simple and transparent; they do not replace human judgment. Earlier “high-integrity / military” marketing language is intentionally avoided here.
+
+## License
+
+MIT. See [LICENSE](LICENSE).
