@@ -1,0 +1,2 @@
+[console_scripts]
+peer-consult = peer_consult.main:main
